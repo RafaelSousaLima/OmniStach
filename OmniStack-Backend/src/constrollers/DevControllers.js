@@ -21,8 +21,6 @@ module.exports =  {
 
             const techsArray = parseStringAsArray(techs);
 
-            // const techsArray = techs.split(',').map(tech => tech.trim());
-
             const location = {
                 type: 'Point',
                 coordinates: [longitude, latitude],
@@ -38,5 +36,23 @@ module.exports =  {
             });
         }
         return response.json(dev);
+    },
+
+    async update(request, response) {
+        const {github_username} = request.query;
+
+        let dev = await Dev.find()
+
+    },
+
+    async delete(request, response) {
+        const {github_username} = request.query;
+        let dev = await Dev.deleteOne({github_username});
+        if (!dev) {
+            return response.json(dev.github_username + " deletado com sucesso!");
+        } else {
+            return response.json(github_username + " não encontrodo.");
+        }
     }
+
 };
