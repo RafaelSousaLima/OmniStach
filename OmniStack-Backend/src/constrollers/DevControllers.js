@@ -12,8 +12,8 @@ module.exports =  {
     async store(request, response) {
         const { github_username, techs, latitude, longitude } = request.body;
 
+        console.log(github_username);
         let dev = await Dev.findOne({ github_username });
-
         if (!dev) {
             const apiResponse = await axios.get(`http://api.github.com/users/${github_username}`);
             
@@ -37,22 +37,5 @@ module.exports =  {
         }
         return response.json(dev);
     },
-
-    async update(request, response) {
-        const {github_username} = request.query;
-
-        let dev = await Dev.find()
-
-    },
-
-    async delete(request, response) {
-        const {github_username} = request.query;
-        let dev = await Dev.deleteOne({github_username});
-        if (!dev) {
-            return response.json(dev.github_username + " deletado com sucesso!");
-        } else {
-            return response.json(github_username + " não encontrodo.");
-        }
-    }
 
 };
