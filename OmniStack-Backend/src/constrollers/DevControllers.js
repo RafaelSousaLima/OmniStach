@@ -33,7 +33,10 @@ module.exports =  {
                 techs: techsArray,
                 location
             });
-            return response.json(`Usuário ${github_username} criado com sucesso.`);
+            return response.json({
+                'message': `Usuário ${github_username} criado com sucesso.`,
+                'object': dev
+            });
         }
         return response.json(`Usuário ${github_username} já existe dentro da aplicação.`);
     },
